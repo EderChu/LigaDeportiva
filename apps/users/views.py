@@ -4,4 +4,4 @@ from django.views.generic import TemplateView
 
 class InicioView(TemplateView):
 
-    template_name = 'base/panel.html'
+    template_name = 'panel/panel.html'

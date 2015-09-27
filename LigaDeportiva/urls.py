@@ -4,7 +4,9 @@ from django.contrib import admin
 
 urlpatterns = [
     # urls para la aplicacion asistencia
-    url(r'^', include('apps.users.urls', namespace="usuario_app")),
+    url(r'^', include('apps.prueba.urls', namespace="prueba_app")),
+    url(r'^', include('apps.users.urls', namespace="users_app")),
+    # urls para la aplicacion users
 
     url(r'^admin/', include(admin.site.urls)),
 ]

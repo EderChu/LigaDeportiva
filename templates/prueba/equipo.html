@@ -1,0 +1,35 @@
+{% extends "home/base_home.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+    {% include "include/header.html" %}
+            <div class="row">
+              <div class="card">
+                <div class="col s12 m6 ">
+                    <form class="col s6" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
+                      <div class="row">
+                        <div class="input-field col s12">
+                          {{form.nombre}}
+                            {{form.nombre.label_tag}}
+                        </div>
+                        <div class="input-field col s12">
+                          {{form.facultad}}
+                            {{form.facultad.label_tag}}
+                        </div>
+                        <div class="input-field col s12">
+                          {{form.delegado}}
+                            {{form.delegado.label_tag}}
+                        </div>
+                        <div class="row">
+                                <div class="input-field col s12">
+                                      <button class="btn cyan waves-effect waves-light center" type="submit" name="action">Enviar
+                                        <i class="mdi-content-send right"></i>
+                                      </button>
+                                </div>
+                        </div>            
+                      </div>
+                </div>
+              </div>
+        </div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "home/base_home.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+    {% include "include/header.html" %}
+
+    <div class="row">
+              <div class="card">
+                <div class="col s12 m6 ">
+                    <form class="col s6" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
+                      <div class="row">
+                        <div class="input-field col s12">
+                          {{form.nombres}}
+                          {{form.nombres.label_tag}}
+                        </div>
+                        <div class="input-field col s12">
+                          {{form.apellidos}}
+                          {{form.apellidos.label_tag}}
+                        </div>
+                        <div class="input-field col s12">
+                          {{form.fecha_nacimiento}}
+                          {{form.fecha_nacimiento.label_tag}}
+                        </div>
+                          {{form.equipo}}
+                        <div class="row">
+                                <div class="input-field col s12">
+                                      <button class="btn cyan waves-effect waves-light center" type="submit" name="action">Enviar
+                                        <i class="mdi-content-send right"></i>
+                                      </button>
+                                </div>
+                        </div>            
+                      </div>
+                </div>
+              </div>
+        </div>
+{% endblock content %}
+ 
