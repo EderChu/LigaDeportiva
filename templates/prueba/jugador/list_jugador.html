@@ -1,0 +1,45 @@
+{% extends "home/base_home.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+    {% include "include/header.html" %}
+
+    <div class="container panel-container">
+      <div class="row">
+          <div class="col s6 m4">
+          <a class="waves-effect waves-light btn" href="{% url 'prueba_app:registrar_jugador' %}"><i class="fa fa-plus left"></i>agregar Jugador</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>apellidos</th>
+              <th>Fecha Nac</th>
+              <th>Equipo</th>             
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for jugador in  jugadores %}
+            <tr>
+              <td>{{ jugador.nombres }}</td>
+              <td>{{ jugador.apellidos }}</td>
+              <td>{{ jugador.fecha_nacimiento }}</td>
+              <td>{{ jugador.equipo }}</td>
+              <td>
+                <a href="#" class="waves-effect waves-light btn panel-btn green"><i class="fa fa-eye"></i></a>
+                <a href="#" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i></a>
+                <a href="#" class="waves-effect waves-light btn panel-btn red"><i class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+{% endblock content %}

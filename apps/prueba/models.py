@@ -4,7 +4,7 @@ from django.db import models
 
 class Equipo(models.Model):
     nombre = models.CharField('Nombre', max_length=50)
-    facultad = models.CharField('Ciudad', max_length=50)
+    facultad = models.CharField('Facultad', max_length=50)
     delegado = models.CharField('Delegado', max_length=50)
     num_jugadores = models.PositiveIntegerField('Numero de Jugadores',default=0)
 

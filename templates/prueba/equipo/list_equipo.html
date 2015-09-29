@@ -1,0 +1,45 @@
+{% extends "home/base_home.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+    {% include "include/header.html" %}
+
+    <div class="container panel-container">
+      <div class="row">
+          <div class="col s6 m4">
+          <a class="waves-effect waves-light btn" href="{% url 'prueba_app:registrar_equipo' %}"><i class="fa fa-plus left"></i>agregar Equipo</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>facultad</th>
+              <th>delegado</th>
+              <th>num jugadores</th>             
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for equipo in  equipos %}
+            <tr>
+              <td>{{ equipo.nombre }}</td>
+              <td>{{ equipo.facultad }}</td>
+              <td>{{ equipo.delegado }}</td>
+              <td>{{ equipo.num_jugadores }}</td>
+              <td>
+                <a href="{% url 'prueba_app:detalle_equipo' equipo.pk %}" class="waves-effect waves-light btn panel-btn green"><i class="fa fa-eye"></i></a>
+                <a href="{% url 'prueba_app:modificar_equipo' equipo.pk %}" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i></a>
+                <a href="{% url 'prueba_app:eliminar_equipo' equipo.pk %}" class="waves-effect waves-light btn panel-btn red"><i class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+{% endblock content %}

@@ -16,8 +16,8 @@ class EquipoForm(forms.ModelForm):
        num_palabras = len(nom)
        if num_palabras<5:
              raise forms.ValidationError("nombre muy corto")
-       return nom      
-
+       return nom   
+       
 class JugadorForm(forms.Form):
     nombres = forms.CharField(max_length=50)
     apellidos = forms.CharField(max_length=50)
@@ -26,4 +26,5 @@ class JugadorForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(JugadorForm, self).__init__(*args, **kwargs)
+        #aqui es donde le digo que lene el combo box de la tabla
         self.fields['equipo'].queryset = Equipo.objects.all()
