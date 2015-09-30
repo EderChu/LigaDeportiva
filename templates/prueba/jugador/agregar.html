@@ -5,34 +5,65 @@
 
     {% include "include/header.html" %}
 
-    <div class="row">
-              <div class="card">
-                <div class="col s12 m6 ">
-                    <form class="col s6" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
-                      <div class="row">
-                        <div class="input-field col s12">
-                          {{form.nombres}}
-                          {{form.nombres.label_tag}}
-                        </div>
-                        <div class="input-field col s12">
-                          {{form.apellidos}}
-                          {{form.apellidos.label_tag}}
-                        </div>
-                        <div class="input-field col s12">
-                          {{form.fecha_nacimiento}}
-                          {{form.fecha_nacimiento.label_tag}}
-                        </div>
-                          {{form.equipo}}
-                        <div class="row">
+    <div class="container panel-container">
+        <div class="row">
+            <div class="col s5">
+                <a class="waves-effect waves-light btn btn-back" href="{% url 'prueba_app:listar_jugador' %}"><i class="fa fa-chevron-left left"></i>Regresar</a>    
+            </div>
+        </div>
+
+
+        <div class="divider"></div>
+        {% if form.errors %}
+            <div class="card-panel red lighten-1">
+                <span class="white-text"> {{ form.errors }} </span>
+            </div>
+            <div class="divider"></div>
+        {% endif %}
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card-panel">
+                    <div class="row">
+                        <form class="col s12" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="row">
                                 <div class="input-field col s12">
-                                      <button class="btn cyan waves-effect waves-light center" type="submit" name="action">Enviar
+                                  {{form.nombres}}
+                                  {{form.nombres.label_tag}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  {{form.apellidos}}
+                                  {{form.apellidos.label_tag}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  {{form.fecha_nacimiento}}
+                                  {{form.fecha_nacimiento.label_tag}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  {{form.equipo}}
+                                  {{form.equipo.label_tag}}
+                                </div>
+                            </div>
+                        </form> 
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                      <button class="btn cyan waves-effect waves-light right" type="submit" name="action">guardar
                                         <i class="mdi-content-send right"></i>
                                       </button>
                                 </div>
-                        </div>            
-                      </div>
-                </div>
-              </div>
-        </div>
+                            </div>
+                    </div>
+                </div><!-- fin de card-panel -->
+
+            </div>
+        </div><!-- fin de row -->
+        
+    </div><!-- fin de panel-container -->
 {% endblock content %}
  
