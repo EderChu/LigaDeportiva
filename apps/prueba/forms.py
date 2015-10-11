@@ -1,5 +1,5 @@
 from django import forms
-from models import Equipo, Jugador
+from models import Equipo, Jugador, Medico, Especialidad
 
 class EquipoForm(forms.ModelForm):
    class Meta:
@@ -28,3 +28,17 @@ class JugadorForm(forms.Form):
         super(JugadorForm, self).__init__(*args, **kwargs)
         #aqui es donde le digo que lene el combo box de la tabla
         self.fields['equipo'].queryset = Equipo.objects.all()
+
+class MedicoForm(forms.ModelForm):
+    class Meta:
+        model = Medico
+        fields = ("__all__")
+
+class EspecialidadForm(forms.ModelForm):
+    class Meta:
+        model = Especialidad
+        fields = ("__all__")
+    
+class BuscarForm(forms.Form):
+       # TODO: Define form fields here
+    clave = forms.CharField(label='Nombre',required=True)

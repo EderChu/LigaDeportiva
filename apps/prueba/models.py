@@ -22,4 +22,30 @@ class Jugador(models.Model):
 
 
 
+class Especialidad(models.Model):
+    nombre = models.CharField('Nombre', max_length=50)
+    class Meta:
+        verbose_name = "Especialidad"
+        verbose_name_plural = "Especialidads"
+
+    def __unicode__(self):
+        return self.nombre
+    
+
+class Medico(models.Model):
+    nombre = models.CharField('Nombre', max_length=50)
+    apellidos = models.CharField('Apellido', max_length=50)
+    email = models.EmailField()
+    telefono = models.CharField('Telefono', max_length=50)
+    especialidad = models.ForeignKey(Especialidad)
+    class Meta:
+        verbose_name = "Medico"
+        verbose_name_plural = "Medicos"
+
+    def __unicode__(self):
+        return self.nombre
+    
+
+
+
     
