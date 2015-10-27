@@ -25,7 +25,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.prueba',
+    'apps.users',
+    'apps.torneo',
+    'apps.equipo',
+    'apps.jugador',
+    'apps.incidencias',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,7 +92,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+AUTH_USER_MODEL = 'users.User'
 
 
 # Static files (CSS, JavaScript, Images)
