@@ -17,4 +17,9 @@ class Migration(migrations.Migration):
             name='precio_pago',
             field=models.ForeignKey(to='torneo.PrecioPago'),
         ),
+        migrations.AddField(
+            model_name='pago',
+            name='torneo',
+            field=models.ForeignKey(to='torneo.Torneo'),
+        ),
     ]

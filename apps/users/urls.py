@@ -3,8 +3,18 @@ from . import views
 
 urlpatterns = [
     url(
-        r'^$',
+        r'^panel/$',
         views.InicioView.as_view(),
         name='inicio'
     ),
-    ]
+    url(
+        r'^$',
+        views.LogIn.as_view(),
+        name='login'
+    ),
+    url(
+        r'^add-admin/$',
+        views.AgregarAdministrador.as_view(),
+        name='agregar-administrador'
+    ),
+]

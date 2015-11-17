@@ -14,13 +14,14 @@ class Insidencia(models.Model):
 
     def __str__(self):
         return self.tipo
-    
+
 
 class Partido(models.Model):
     fixture = models.ForeignKey(Fixture)
     goles_local = models.PositiveIntegerField()
     goles_visita = models.PositiveIntegerField()
     insidenci = models.ForeignKey(Insidencia)
+
     class Meta:
         verbose_name = "Partido"
         verbose_name_plural = "Partidos"
@@ -41,5 +42,3 @@ class Resultados(models.Model):
 
     def __unicode__(self):
         return self.equipo
-    
-    

@@ -26,6 +26,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('nombre', models.CharField(max_length=50, verbose_name=b'Nombre de Equipo')),
                 ('color_camiseta', models.CharField(max_length=50, verbose_name=b'Color de Camiseta')),
+                ('logo', models.IntegerField()),
             ],
             options={
                 'verbose_name': 'Equipo',

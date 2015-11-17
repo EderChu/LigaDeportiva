@@ -64,6 +64,7 @@ class Migration(migrations.Migration):
                 ('sexo', models.CharField(max_length=1, verbose_name=b'sexo', choices=[(b'M', b'MASCULINO'), (b'F', b'FEMENINO')])),
                 ('telefono', models.CharField(max_length=10, verbose_name=b'Telefono')),
                 ('fecha_nacimineto', models.DateField(null=True, verbose_name=b'Fecha de nacimiento', blank=True)),
+                ('foto', models.ImageField(upload_to=b'')),
             ],
             options={
                 'verbose_name': 'Persona',

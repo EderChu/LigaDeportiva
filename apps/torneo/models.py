@@ -16,6 +16,7 @@ class Persona(models.Model):
     sexo = models.CharField('sexo', max_length=1, choices=GENDER_CHOICES)
     telefono = models.CharField('Telefono', max_length=10)
     fecha_nacimineto = models.DateField('Fecha de nacimiento', blank=True, null=True)
+    foto = models.ImageField()
     class Meta:
         verbose_name = "Persona"
         verbose_name_plural = "Personas"
@@ -60,7 +61,7 @@ class CampoDeportivo(models.Model):
         verbose_name_plural = "CampoDeportivos"
 
     def __unicode__(self):
-        return slef.nombre
+        return self.nombre
 
 
 class PrecioPago(models.Model):

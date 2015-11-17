@@ -8,7 +8,7 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('equipo', '0002_pago_precio_pago'),
+        ('equipo', '0002_auto_20151117_1703'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('torneo', '0001_initial'),
     ]

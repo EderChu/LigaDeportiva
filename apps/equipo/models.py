@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 from apps.users.models import User
-from apps.torneo.models import Persona, PrecioPago
+from apps.torneo.models import Persona, PrecioPago, Torneo
 # Create your models here.
+
+
 class JuntaDirectiva(models.Model):
     presidente = models.OneToOneField(Persona)
     secretario = models.OneToOneField(Persona, related_name="Persona_secretario")
@@ -42,6 +44,7 @@ class Facultad(models.Model):
 class Pago(models.Model):
     precio_pago = models.ForeignKey(PrecioPago)
     junta_directiva = models.ForeignKey(JuntaDirectiva)
+    torneo = models.ForeignKey(Torneo)
     fecha = models.DateField()
     usuario = models.ForeignKey(User)
     class Meta:
@@ -58,6 +61,7 @@ class Equipo(models.Model):
     junta_directiva = models.ForeignKey(JuntaDirectiva)
     comando_tecnico = models.ForeignKey(ComandoTecnico)
     facultad = models.ForeignKey(Facultad)
+    logo = models.IntegerField()
 
     class Meta:
         verbose_name = "Equipo"
