@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView, ListView
 from .models import Autor, Editorial, Libro
 from django.core.urlresolvers import reverse_lazy
-from .forms import AutorForm, EditorialForm, LibroForm 
+from .forms import AutorForm, EditorialForm, LibroForm, BuscarForm
+
 
 # Create your views here.
 class ListAutorView(ListView):
@@ -31,11 +32,12 @@ class EliminarAutor(DeleteView):
     success_url = reverse_lazy('libro_app:listar-autor')
 
 
-'''mantenumientos para editorial'''
+#mantenimietno editorial
 class ListEditorialView(ListView):
     context_object_name = 'editoriales'
     queryset = Editorial.objects.all()
     template_name = 'libro/editorial/listar.html'
+
 
 class AgregarEditorial(CreateView):
     form_class = EditorialForm
@@ -55,13 +57,28 @@ class EliminarEditorial(DeleteView):
     model = Editorial
     success_url = reverse_lazy('libro_app:listar-editorial')
 
-'''mantenimiento para libros'''
 
+#mantenimietno libros
 class ListLibroView(ListView):
     context_object_name = 'libros'
-    queryset = Libro.objects.all()
+    #model = Libro
     template_name = 'libro/libro/listar.html'
     paginate_by = 4
+
+    def get_context_data(self, **kwargs):
+        context = super(ListLibroView, self).get_context_data(**kwargs)
+        context['form'] = BuscarForm
+        return context
+
+    def get_queryset(self):
+        #recuperamos el valor por GET
+        queryset = Libro.objects.all()
+        q = self.request.GET.get("clave")
+        #utilizamos el procedimietno almacenado
+        if q:
+            queryset = Libro.objects.buscar_libro(q)
+        return queryset
+
 
 class AgregarLibro(CreateView):
     form_class = LibroForm

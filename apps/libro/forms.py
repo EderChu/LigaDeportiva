@@ -19,6 +19,7 @@ class LibroForm(forms.ModelForm):
     class Meta:
         model = Libro
         fields = ('__all__')
-    
-    
-    
+
+
+class BuscarForm(forms.Form):
+    clave = forms.CharField(label='Ingrese Titulo', required=False)

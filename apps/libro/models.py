@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 
-# Create your models here.
+
 #clase para uator
 class Autor(models.Model):
     nombre = models.CharField(max_length=50)
@@ -28,12 +28,21 @@ class Editorial(models.Model):
         return self.denominacion
 
 
+class ManagerLibro(models.Manager):
+    def buscar_libro(self, titulo):
+        return self.filter(
+            titulo__icontains=titulo,
+        )
+
+
 # Create your models here.
 class Libro(models.Model):
     titulo = models.CharField(max_length=50)
     edicion = models.CharField(max_length=50)
     autor = models.ForeignKey(Autor)
     editorial = models.ForeignKey(Editorial)
+
+    objects = ManagerLibro()
 
     class Meta:
         verbose_name = "Libro"
