@@ -39,7 +39,7 @@ class Facultad(models.Model):
         verbose_name_plural = "Facultads"
 
     def __unicode__(self):
-        return nombre
+        return self.nombre
     
 class Pago(models.Model):
     precio_pago = models.ForeignKey(PrecioPago)

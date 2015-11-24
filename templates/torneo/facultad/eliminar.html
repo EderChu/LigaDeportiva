@@ -1,9 +1,7 @@
-{% extends "home/base_home.html" %}
+{% extends "panel/panel.html" %}
 
-{% block content %}
+{% block contenido_panel %}
 {% load staticfiles %}
-
-    {% include "include/header.html" %}
 
     <div class="container panel-container">
         <div class="row">
@@ -18,13 +16,13 @@
             <div class="col s12 m6 offset-m3">
                 <div class="card-panel grey lighten-5 z-depth-1">
                     <div class="row valign-wrapper">
-                        <form action="{% url 'equipo_app:eliminar_Facultad' facultad.pk %}" method="POST">{% csrf_token %}
+                        <form action="{% url 'equipo_app:eliminar-facultad' object.pk %}" method="POST">{% csrf_token %}
                             <div class="col s12">
-                                <h6 class="center-align">¿Desea eliminar la carrera "{{ object }}"?</h6>
+                                <h6 class="center-align">¿Desea eliminar la Facultad"{{ object }}"?</h6>
                             </div>
                             <div class="col s12 center">
                                 <button class="waves-effect waves-light btn btn-panel red" type="submit" name="action">si</button>
-                                <a href="{% url 'equipo_app:listar_Facultad' %}" class="waves-effect waves-light btn panel-btn white black-text">no</a>
+                                <a href="{% url 'equipo_app:listar-facultad' %}" class="waves-effect waves-light btn panel-btn white black-text">no</a>
                             </div>
                         </form>                        
                     </div>
@@ -35,4 +33,4 @@
         
     </div><!-- fin de panel-container -->
 
-{% endblock content %}
+{% endblock contenido_panel %}

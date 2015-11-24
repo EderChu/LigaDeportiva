@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView, ListView
 from django.views.generic.edit import FormView, FormMixin
@@ -11,7 +12,6 @@ from django.utils import timezone
 
 
 # Create your views here.
-"MANTENIMIENTOS DE TABLA CampoDeportivo"
 class ListarCampoD(ListView):
     context_object_name = 'campos'
     queryset = CampoDeportivo.objects.all()
@@ -22,7 +22,7 @@ class ListarCampoD(ListView):
 class RegistrarCampoD(CreateView):
     form_class = CampoDForm
     template_name = "torneo/campodeportivo/agregar.html"
-    success_url = '.'
+    success_url = reverse_lazy('torneo_app:listar_CampoD')
 
 
 #clase para ver los datos en detalle de un solo equipo
@@ -41,7 +41,7 @@ class ModificarCampoD(UpdateView):
     model = CampoDeportivo
     # le pasamos el template donde se pintaran los datos recureados
     template_name = 'torneo/campodeportivo/modificar.html'
-    success_url = reverse_lazy('prueba_app:listar_CampoD')
+    success_url = reverse_lazy('torneo_app:listar_CampoD')
     #le pasamos el formulario en el que recibiremos los datos a modificar
     form_class = CampoDForm
 
@@ -54,4 +54,4 @@ class EliminarCampoD(DeleteView):
     #pasamos el modelo del cual se eliminara elregistro
     model = CampoDeportivo
     #donde ira cuando se complete la accion
-    success_url = reverse_lazy('prueba_app:listar_CampoD')
+    success_url = reverse_lazy('torneo_app:listar_CampoD')

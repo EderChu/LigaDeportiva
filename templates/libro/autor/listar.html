@@ -1,0 +1,27 @@
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>clave</th>
+              <th>nombre</th>
+              <th>apellido</th>
+              <th>accion</th>             
+              
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for autor in  autores %}
+            <tr>
+              <td>{{ autor.pk }}</td>
+              <td>{{ autor.nombre }}</td>
+              <td>{{ autor.apellidos }}</td>
+              <td>
+               <a href="{% url 'libro_app:update-autor' autor.pk %}" class="waves-effect waves-light btn panel-btn green"><i class="mdi-action-search right"></i>modificar</a>
+               <a href="{% url 'libro_app:delete-autor' autor.pk %}" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i>eliminar</a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>

@@ -1,0 +1,27 @@
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>clave</th>
+              <th>Denominacion</th>
+              <th>Direccion</th>
+              <th>accion</th>             
+              
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for editorial in  editoriales %}
+            <tr>
+              <td>{{ editorial.pk }}</td>
+              <td>{{ editorial.denominacion }}</td>
+              <td>{{ editorial.direccion }}</td>
+              <td>
+               <a href="{% url 'libro_app:update-editorial' editorial.pk %}" class="waves-effect waves-light btn panel-btn green"><i class="mdi-action-search right"></i>modificar</a>
+               <a href="{% url 'libro_app:delete-editorial' editorial.pk %}" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i>eliminar</a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>

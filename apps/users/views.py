@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout
@@ -10,8 +10,10 @@ from .models import User
 from .forms import LoginForm, RegistroUserForm
 # Create your views here.
 
+
 class InicioView(TemplateView):
     template_name = 'panel/panel.html'
+
 
 class LogIn(FormView):
     form_class = LoginForm
@@ -27,6 +29,11 @@ class LogIn(FormView):
             if user.is_active:
                 login(self.request, user)
         return super(LogIn, self).form_valid(form)
+
+
+def LogOut(request):
+    logout(request)
+    return redirect('/')
 
 
 class AgregarAdministrador(FormView):

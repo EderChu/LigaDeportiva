@@ -13,6 +13,11 @@ urlpatterns = [
         name='login'
     ),
     url(
+        r'^usuario/salir/$',
+        'apps.users.views.LogOut',
+        name='logout'
+    ),
+    url(
         r'^add-admin/$',
         views.AgregarAdministrador.as_view(),
         name='agregar-administrador'

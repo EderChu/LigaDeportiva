@@ -1,0 +1,27 @@
+{% if is_paginated %}
+
+    <div role="navigation">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="button">
+                    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                </li>
+
+            {% endif %}
+            {% for num_page in paginator.page_range %}
+
+                {% if page_obj.number|add:'-5' <= num_page and page_obj.number|add:"5" >= num_page %}
+
+                    {%if page_obj.number == num_page %}
+
+                        <li class="active card-panel teal lighten-2"><a class="current" href="#">{{ num_page }}</a></li>
+                    {% else %}
+                        <li><a class="waves-effect" href="?page={{ num_page }}">{{ num_page }}</a></li>
+                    {% endif %}
+                {% endif %}
+                  
+            {% endfor %}
+            
+        </ul>
+    </div>  <!-- cd-pagination-wrapper -->
+{% endif %}

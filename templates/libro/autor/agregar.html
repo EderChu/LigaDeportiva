@@ -1,0 +1,10 @@
+<form class="col s12" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
+{{form.as_p}}
+<div class="row">
+        <div class="input-field col s12">
+                <button class="btn cyan waves-effect waves-light center" type="submit" name="action">Guardar
+                <i class="mdi-content-send right"></i>
+                </button>
+        </div>
+</div>     
+</form>       

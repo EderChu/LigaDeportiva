@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/stylepanel.css' %}">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 {% endblock css %}
 
 {% block sidenav %}
@@ -16,8 +17,7 @@
               <div class="nav-wrapper">
                 <a href="#"></a>
                 <a class="page-title">
-                    {% block titulo_nav %}
-                    {% endblock titulo_nav %}</a>
+                    {% block titulo_nav %}{% endblock titulo_nav %}</a>
               </div>
             </div>
         </nav>
@@ -38,7 +38,7 @@
                       <li><a href="/"> inicio</a>
                       </li>
                       <li class="divider"></li>
-                      <li><a href="#">Salir</a>
+                      <li><a href="{% url 'users_app:logout' %}">Salir</a>
                       </li>
                     </ul>
                     <a class="waves-effect waves-light btn-flat white-text dropdown-button profile-btn" data-activates="profile-dropdown">name<i class="mdi-navigation-arrow-drop-down right-profile"></i></a>
@@ -54,7 +54,8 @@
     </header>
     <main>
         {% block mensaje %}{% endblock mensaje %}
-        {% block contenido_panel %}{% endblock contenido_panel %}
+        {% block contenido_panel %}
+        {% endblock contenido_panel %}
 
     </main>
 
@@ -63,5 +64,6 @@
 {% block js %}
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>
 {% endblock js %}

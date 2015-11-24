@@ -2,7 +2,7 @@
 
 {% block title %}panel{% endblock title %}
 
-  {% block titulo_nav %} Panel de Administrador{% endblock titulo_nav %}
+  {% block titulo_nav %} Liga Deportiva Unsaac{% endblock titulo_nav %}
 
     {% block funciones %}
     <li class="no-padding">
@@ -10,11 +10,11 @@
             <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Mantenimientos</a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a href="#">Prueba Equipo</a></li>
-                        <li><a href="#">Prueba Jugador</a></li>
-                        <li><a href="#">mantenimiento</a></li>
-                        <li><a href="#">mantenimiento 1s</a></li>
-                        <li><a href="#">mantenimiento 1</a></li>
+                        <li><a href="{% url 'torneo_app:listar_CampoD' %}">Campo Deportivo</a></li>
+                        <li><a href="{% url 'equipo_app:listar-facultad' %}">Facultad</a></li>
+                        <li><a href="#">Arbitros</a></li>
+                        <li><a href="#">Importe Pagos</a></li>
+                        <li><a href="#">Fixture</a></li>
                         <li class="divider"></li>
                         <li><a href="#">mantenimiento 1</a></li>
                         <li><a href="#">mantenimiento 1</a>
@@ -52,7 +52,7 @@
             </li>
         </ul>
         <div class="col s1">
-                <a class="waves-effect waves-light btn btn-back" href="http://isc.herokuapp.com/"><i class="fa fa-chevron-left left"></i>Home</a>    
+                <a class="waves-effect waves-light btn btn-back" href="#"><i class="fa fa-chevron-left left"></i>Home</a>    
     </div>
     </li>
     {% endblock funciones %}

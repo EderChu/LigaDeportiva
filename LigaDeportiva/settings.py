@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'apps.jugador',
     'apps.incidencias',
     'apps.prueba',
+    'apps.libro',
 )
 
 MIDDLEWARE_CLASSES = (

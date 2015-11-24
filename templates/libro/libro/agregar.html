@@ -1,0 +1,38 @@
+{% extends "panel/panel.html" %}
+
+{% block contenido_panel %}
+{% load staticfiles %}
+
+            <div class="row">
+              <div class="card">
+                <div class="col s10 m6 ">
+                    <form class="col s12" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
+                      <div class="row">
+                        <div class="input-field col s6">
+                            {{form.titulo}}
+                            {{form.titulo.label_tag}}
+                        </div>
+                        <div class="input-field col s6">
+                            {{form.edicion}}
+                            {{form.edicion.label_tag}}
+                        </div>
+                        <div class="input-field col s6">
+                            {{form.autor}}
+                            {{form.autor.label_tag}}
+                        </div>
+                        <div class="input-field col s6">
+                            {{form.editorial}}
+                            {{form.editorial.label_tag}}
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn cyan waves-effect waves-light center" type="submit" name="action">Guardar Facultad
+                                    <i class="mdi-content-send right"></i>
+                                </button>
+                            </div>
+                        </div>            
+                      </div>
+                </div>
+              </div>
+            </div>
+{% endblock contenido_panel %}

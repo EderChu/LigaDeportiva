@@ -1,0 +1,13 @@
+            <div class="col s12">
+                <h5>Eliminando: {{ object }}</h5>    
+            </div>
+
+                        <form action="{% url 'libro_app:delete-autor' object.pk %}" method="POST">{% csrf_token %}
+                            <div class="col s12">
+                                <h6 class="center-align">¿Desea eliminar este obejto"{{ object }}"?</h6>
+                            </div>
+                            <div class="col s12 center">
+                                <button class="waves-effect waves-light btn btn-panel red" type="submit" name="action">si</button>
+                                <a href="{% url 'libro_app:listar-autor'%}" class="waves-effect waves-light btn panel-btn white black-text">no</a>
+                            </div>
+                        </form>                        

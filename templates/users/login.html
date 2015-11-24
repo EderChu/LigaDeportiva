@@ -1,8 +1,53 @@
-<form class="col s6" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
-{{form}}
-    <div class="input-field col s12">
-        <button class="btn cyan waves-effect waves-light center" type="submit" name="action">Enviar
-        <i class="mdi-content-send right"></i>
-        </button>
+{% extends "home/base_home.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col s12 m5 offset-m3 l4 offset-l4 z-depth-4 card-panel">
+
+                <form method="POST" class="login-form"> {% csrf_token %}
+
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <p class="center">
+                                Introdusca Usuario y Contraseña
+                            </p>
+                            {% if form.errors %}
+                                <div class="center text-errors">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-perm-identity prefix"></i>
+                            {{ form.username }}
+                            {{ form.username.label_tag }}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            {{ form.password }}
+                            {{ form.password.label_tag }}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect waves-light col s12" type="submit" name="action">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>            
+        </div>
     </div>
-</form>
+
+{% endblock content %}
