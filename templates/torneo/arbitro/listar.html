@@ -1,0 +1,40 @@
+{% extends "panel/panel.html" %}
+
+{% block contenido_panel %}
+{% load staticfiles %}
+
+    <div class="container panel-container">
+      <div class="row">
+          <div class="col s6 m4">
+          <p><a class="waves-effect waves-light btn" href="{% url 'torneo_app:registrar_arbitro' %}"><i class="fa fa-plus left"></i>agregar Arbitro</a></p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>Persona</th>
+              <th>Experiencia</th>
+              
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for campo in  campos %}
+            <tr>
+              <td>{{ campo.persona }}</td>
+              <td>{{ campo.experiencia }}</td>
+              <td>
+               <a href="{% url 'torneo_app:detalle_arbitro' campo.pk %}" class="waves-effect waves-light btn panel-btn green"><i class="fa fa-eye"></i></a>
+               <a href="{% url 'torneo_app:modificar_arbitro' campo.pk %}" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i></a>
+               <a href="{% url 'torneo_app:eliminar_arbitro' campo.pk %}" class="waves-effect waves-light btn panel-btn red"><i class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+{% endblock contenido_panel %}

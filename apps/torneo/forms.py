@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django import forms
-from models import CampoDeportivo
+from models import CampoDeportivo,Arbitro
 
 
 class CampoDForm(forms.ModelForm):
@@ -22,3 +22,8 @@ class CampoDForm(forms.ModelForm):
         if num_palabras < 5:
             raise forms.ValidationError("Nombre de Propietario muy corto")
         return prop
+class ArbitroForm(forms.ModelForm):
+
+    class Meta:
+        model = Arbitro
+        fields = ("__all__")
