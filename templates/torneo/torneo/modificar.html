@@ -1,0 +1,78 @@
+{% extends "panel/panel.html" %}
+
+{% block contenido_panel %}
+{% load staticfiles %}
+
+    <div class="container panel-container">
+        <div class="row">
+            <div class="col s5">
+                <a class="waves-effect waves-light btn btn-back" href="{% url 'torneo_app:listar_torneo' %}"><i class="fa fa-chevron-left left"></i>Regresar</a>    
+            </div>
+            <div class="col s7">
+                <h5>Modificando: {{ object }}</h5>    
+            </div>
+        </div>
+
+
+        <div class="divider"></div>
+        {% if form.errors %}
+            <div class="card-panel red lighten-1">
+                <span class="white-text"> {{ form.errors }} </span>
+            </div>
+            <div class="divider"></div>
+        {% endif %}
+        <div class="row">
+            <div class="col s12 m6 l6">
+                <div class="card-panel">
+                    <div class="row">
+                        <form class="col s12" action="{% url 'torneo_app:modificar_torneo' torneo.pk %}" method="POST">{% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.nombre }}
+                                    {{ form.nombre.label_tag }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.denominacion }}
+                                    {{ form.denominacion.label_tag }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.fecha_inicio }}
+                                    {{ form.fecha_inicio.label_tag }}
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.fecha_fin }}
+                                    {{ form.fecha_fin.label_tag }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.bases }}
+                                    {{ form.bases.label_tag }}
+                                </div>
+                            </div>
+                            
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                      <button class="btn cyan waves-effect waves-light right" type="submit" name="action">actualizar
+                                        <i class="mdi-content-send right"></i>
+                                      </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- fin de card-panel -->
+            </div>
+        </div><!-- fin de row -->
+        
+    </div><!-- fin de panel-container -->
+{% endblock contenido_panel %}

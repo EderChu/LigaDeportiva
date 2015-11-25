@@ -1,0 +1,43 @@
+{% extends "panel/panel.html" %}
+
+{% block contenido_panel %}
+{% load staticfiles %}
+
+    <div class="container panel-container">
+        <div class="col s6 m4">
+            <p><a class="waves-effect waves-light btn" href="{% url 'torneo_app:registrar_torneo' %}"><i class="fa fa-plus left"></i>agregar Torneo</a></p> 
+        </div>
+      <div class="divider"></div>
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Denominacion</th> 
+              <th>Fecha Inic.</th>
+              <th>Fecha Fin</th>  
+              <th>Bases</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for torneo in  torneos %}
+            <tr>
+              <td>{{ torneo.nombre }}</td>
+              <td>{{ torneo.denominacion }}</td>
+              <td>{{ torneo.fecha_inicio }}</td>
+              <td>{{ torneo.fecha_fin }}</td>
+              <td><a href="{{ torneo.bases.url }}">{{ torneo.bases.url|safe|truncatechars_html:10 }}</a></td>
+              <td>
+                <a href="{% url 'torneo_app:detalle_torneo' torneo.pk %}" class="waves-effect waves-light btn panel-btn green"><i class="fa fa-eye"></i></a>
+                <a href="{% url 'torneo_app:modificar_torneo' torneo.pk %}" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i></a>
+                <a href="{% url 'torneo_app:eliminar_torneo' torneo.pk %}" class="waves-effect waves-light btn panel-btn red"><i class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+{% endblock contenido_panel %}

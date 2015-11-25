@@ -1,0 +1,68 @@
+{% extends "home/base_home.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+    {% include "include/header.html" %}
+
+    <div class="container panel-container">
+      <div class="row">
+          <div class="col s6 m4">
+          <p><a class="waves-effect waves-light btn" href="{% url 'torneo_app:registrar_persona' %}"><i class="fa fa-plus left"></i>agregar Persona</a></p> 
+        </div>
+        <form class="col s6" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
+                      <div class="row">
+                        <div class="input-field col s6">
+                            {{form.clave}}
+                            {{form.clave.label_tag}}
+                        </div>
+                        <div class="row">
+                                <div class="input-field col s6">
+                                      <button class="waves-effect waves-light btn" type="submit" name="action">
+                                        <i class="mdi-action-search right"></i>
+                                      </button>
+                                </div>
+                        </div>            
+                      </div>
+        </form>
+        </div>
+      <div class="divider"></div>
+      <div class="row">
+        <table class="hoverable centered bordered responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th> 
+              <th>Email</th>
+              <th>Direccion</th> 
+              <th>Sexo</th>
+              <th>Telefono</th> 
+              <th>Fec. Nac</th>
+              <th>Foto</th>      
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for persona in  personas %}
+            <tr>
+              <td>{{ persona.nombre }}</td>
+              <td>{{ persona.apellidos }}</td>
+              <td>{{ persona.email }}</td>
+              <td>{{ persona.direccion }}</td>
+              <td>{{ persona.sexo }}</td>
+              <td>{{ persona.telefono }}</td>
+              <td>{{ persona.fecha_nacimiento }}</td>
+              <td><a href="#">{{ persona.foto }}</a></td>
+              <td>
+                <a href="{% url 'torneo_app:detalle_persona' persona.pk %}" class="waves-effect waves-light btn panel-btn green"><i class="fa fa-eye"></i></a>
+                <a href="{% url 'torneo_app:modificar_persona' persona.pk %}" class="waves-effect waves-light btn panel-btn yellow"><i class="fa fa-edit"></i></a>
+                <a href="{% url 'torneo_app:eliminar_persona' persona.pk %}" class="waves-effect waves-light btn panel-btn red"><i class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>            
+          {% endfor %}
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+{% endblock content %}
