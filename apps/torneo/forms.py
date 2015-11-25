@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django import forms
+
 from models import CampoDeportivo, Persona, Arbitro, Fixture, PrecioPago, Torneo
 
 
@@ -38,3 +39,10 @@ class TorneoForm(forms.ModelForm):
             'fecha_inicio': forms.DateInput(attrs={'class': 'datepicker'}),
             'fecha_fin': forms.DateInput(attrs={'class': 'datepicker'}),
         }
+
+
+class ArbitroForm(forms.ModelForm):
+
+    class Meta:
+        model = Arbitro
+        fields = ("__all__")

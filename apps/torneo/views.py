@@ -4,8 +4,9 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from django.views.generic.edit import FormView, FormMixin
 from django.core.urlresolvers import reverse_lazy, reverse
 
-from .forms import CampoDForm, PersonaForm, TorneoForm
-from .models import CampoDeportivo, Persona, Torneo
+
+from .forms import CampoDForm, PersonaForm, TorneoForm, ArbitroForm
+from .models import CampoDeportivo, Persona, Torneo, Arbitro, Fixture
 
 
 from django.http import HttpResponseRedirect
@@ -13,6 +14,7 @@ from django.utils import timezone
 
 
 # Create your views here.
+#Mantenimientos del campo deportivo
 class ListarCampoD(ListView):
     context_object_name = 'campos'
     queryset = CampoDeportivo.objects.all()
@@ -118,3 +120,45 @@ class EliminarTorneo(DeleteView):
     template_name = 'torneo/torneo/eliminar.html'
     model = Torneo
     success_url = reverse_lazy('torneo_app:listar_torneo')
+
+
+#Mantenimientos del arbitro
+class ListarArbitro(ListView):
+    context_object_name = 'campos'
+    queryset = Arbitro.objects.all()
+    template_name = 'torneo/arbitro/listar.html'
+
+
+#clase para registrar un equipo utilizando createview
+class RegistrarArbitro(CreateView):
+    form_class = ArbitroForm
+    template_name = "torneo/arbitro/agregar.html"
+    success_url = reverse_lazy('torneo_app:listar_arbitro')
+
+
+#clase para ver los datos en detalle de un solo equipo
+# utilizaremos un DetaiView que se encarga de recibir el id de equipo
+class detalleArbitro(DetailView):
+    # pasamos hatml donde se pintara el detalle del objeto
+    template_name = 'torneo/arbitro/detalle.html'
+    #pasamos el modelo o tabla del objeto
+    model = Arbitro
+
+
+class ModificarArbitro(UpdateView):
+    #le especificamos la tabla de BD
+    model = Arbitro
+    # le pasamos el template donde se pintaran los datos recureados
+    template_name = 'torneo/arbitro/modificar.html'
+    success_url = reverse_lazy('torneo_app:listar_arbitro')
+    #le pasamos el formulario en el que recibiremos los datos a modificar
+    form_class = ArbitroForm
+
+
+class EliminarArbitro(DeleteView):
+    #pasamos el template donde se mostraara los datos que vamos a eliminar
+    template_name = 'torneo/arbitro/eliminar.html'
+    #pasamos el modelo del cual se eliminara elregistro
+    model = Arbitro
+    #donde ira cuando se complete la accion
+    success_url = reverse_lazy('torneo_app:listar_arbitro')
