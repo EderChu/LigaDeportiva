@@ -1,0 +1,34 @@
+PROCESOS
+1) pre inscripcion
+    solicito usuario presidente junta directiva
+    se verifica si la persona es correcta o tiene autorizacion
+    se le envia un usurio y un password el cual puede ser modificado
+    ese usuario accede al sistema (loguea)
+    se le muestra su panel
+        Agregar Junta Directiva
+        agregar secretario
+        agregar tesorero
+    agrega conando tecnico
+        dt
+        medico
+        delegado
+    inscrbir equipo
+    ficha jugadores
+
+        tarea1: construir panel que solo muestre opciones de (Junta Directiva), (Comando Tecnico),
+                                                        (inscribir equipo), (ficha jugadores)(Lucero)
+
+        tarea2: sub proceso inscribir secre, sub proceso inscribir tesorero(Denis)
+
+        tarea3: sub proceso agregar comando tecnico (Gregori)
+            //detalles
+            se solicita datos de persona luego se agrega como dt o medico, o delegado a la tabla comando tecnico este proceso se haria con un (FormView)
+        tarea4: inscribir equipo se solicita nombre de equipo, facultad, camiseta, logo
+            //detalles
+            con el usuario junta-directiva, se recupera comando tecnico, junta directiva
+            y con esos datos el equipo estaria registrado
+            tener en cuenta que un equipo mientras este habilitado no se puede registrars(dgafz)
+        tarea5: 
+            ficha jugadores se debe mostrar la lista de jugadores del equipo y luego con un chek    para seleccionar al jugador y al pulsar guardar se debe actualizar el estado de esos juagadores a habilitados(Fumita)
+
+        tarea 6: CRUD de las tablas PrecioPago y Pago (Eder)
