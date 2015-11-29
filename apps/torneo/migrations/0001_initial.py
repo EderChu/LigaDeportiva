@@ -57,6 +57,7 @@ class Migration(migrations.Migration):
             name='Persona',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('dni', models.CharField(max_length=8, verbose_name=b'Dni')),
                 ('nombres', models.CharField(max_length=50, verbose_name=b'Nombre')),
                 ('apellidos', models.CharField(max_length=50, verbose_name=b'Apellidos')),
                 ('email', models.EmailField(max_length=254, verbose_name=b'Correo Electronico')),

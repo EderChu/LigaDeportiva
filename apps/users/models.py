@@ -36,8 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     TYPE_CHOICES = (
         ('1', 'Administrador'),
-        ('2', 'Directivo de Equipo'),
-        ('3', 'Arbitro'),
+        ('2', 'Junta Directiva'),
     )
     username = models.CharField('dni', max_length=8, unique=True)
     email = models.EmailField('correo electronico')

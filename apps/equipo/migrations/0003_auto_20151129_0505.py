@@ -8,7 +8,7 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('equipo', '0002_auto_20151117_1703'),
+        ('equipo', '0002_auto_20151129_0505'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('torneo', '0001_initial'),
     ]
@@ -53,6 +53,11 @@ class Migration(migrations.Migration):
             model_name='comandotecnico',
             name='delegado',
             field=models.OneToOneField(related_name='Persona_delegado', to='torneo.Persona'),
+        ),
+        migrations.AddField(
+            model_name='comandotecnico',
+            name='junta_directiva',
+            field=models.OneToOneField(to='equipo.JuntaDirectiva'),
         ),
         migrations.AddField(
             model_name='comandotecnico',

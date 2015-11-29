@@ -7,8 +7,14 @@ from apps.torneo.models import Persona, PrecioPago, Torneo
 
 class JuntaDirectiva(models.Model):
     presidente = models.OneToOneField(Persona)
-    secretario = models.OneToOneField(Persona, related_name="Persona_secretario")
-    tesorero = models.OneToOneField(Persona, related_name="Persona_tesorero")
+    secretario = models.OneToOneField(
+        Persona,
+        related_name="Persona_secretario"
+    )
+    tesorero = models.OneToOneField(
+        Persona,
+        related_name="Persona_tesorero"
+    )
 
     class Meta:
         verbose_name = "JuntaDirectiva"
@@ -16,12 +22,23 @@ class JuntaDirectiva(models.Model):
 
     def __unicode__(self):
         return self.presidente
-    
+
+
 class ComandoTecnico(models.Model):
+    junta_directiva = models.OneToOneField(JuntaDirectiva)
     tecnico = models.OneToOneField(Persona)
-    medico = models.OneToOneField(Persona, related_name="Persona_medico")
-    preparador = models.OneToOneField(Persona, related_name="Persona_preparador")
-    delegado = models.OneToOneField(Persona, related_name="Persona_delegado")
+    medico = models.OneToOneField(
+        Persona,
+        related_name="Persona_medico"
+    )
+    preparador = models.OneToOneField(
+        Persona,
+        related_name="Persona_preparador"
+    )
+    delegado = models.OneToOneField(
+        Persona,
+        related_name="Persona_delegado"
+    )
 
     class Meta:
         verbose_name = "ComandoTecnico"
@@ -29,39 +46,57 @@ class ComandoTecnico(models.Model):
 
     def __unicode__(self):
         return self.tecnico
-    
+
 
 class Facultad(models.Model):
-    nombre = models.CharField('Nombre', max_length=70)
-    siglas = models.CharField('Siglas', max_length=5)
+    nombre = models.CharField(
+        'Nombre',
+        max_length=70
+    )
+    siglas = models.CharField(
+        'Siglas',
+        max_length=5)
+
     class Meta:
         verbose_name = "Facultad"
         verbose_name_plural = "Facultads"
 
     def __unicode__(self):
         return self.nombre
-    
+
+
 class Pago(models.Model):
     precio_pago = models.ForeignKey(PrecioPago)
     junta_directiva = models.ForeignKey(JuntaDirectiva)
     torneo = models.ForeignKey(Torneo)
     fecha = models.DateField()
     usuario = models.ForeignKey(User)
+
     class Meta:
         verbose_name = "Pago"
         verbose_name_plural = "Pagos"
 
     def __unicode__(self):
         return self.junta_directiva
-    
+
 
 class Equipo(models.Model):
-    nombre = models.CharField('Nombre de Equipo', max_length=50)
-    color_camiseta = models.CharField('Color de Camiseta', max_length=50)
+    nombre = models.CharField(
+        'Nombre de Equipo',
+        max_length=50
+    )
+    color_camiseta = models.CharField(
+        'Color de Camiseta',
+        max_length=50
+    )
     junta_directiva = models.ForeignKey(JuntaDirectiva)
     comando_tecnico = models.ForeignKey(ComandoTecnico)
     facultad = models.ForeignKey(Facultad)
     logo = models.IntegerField()
+    estado = models.BooleanField(
+        'Habilitado',
+        default=False,
+    )
 
     class Meta:
         verbose_name = "Equipo"
@@ -69,4 +104,3 @@ class Equipo(models.Model):
 
     def __unicode__(self):
         return self.nombre
-    

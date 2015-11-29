@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django import forms
-from models import Equipo, Jugador, Medico, Especialidad
+from models import Equipo, Jugador, Medico, Especialidad, Policia
 
 class EquipoForm(forms.ModelForm):
    class Meta:
@@ -43,3 +43,9 @@ class EspecialidadForm(forms.ModelForm):
 class BuscarForm(forms.Form):
        # TODO: Define form fields here
     clave = forms.CharField(label='Nombre',required=True)
+
+class PoliciaForm(forms.ModelForm):
+    class Meta:
+        model = Policia
+        fields = ('__all__')
+    

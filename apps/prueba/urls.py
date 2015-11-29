@@ -87,4 +87,25 @@ urlpatterns = [
         views.EliminarMedico.as_view(),
         name='eliminar_medico',
      ),
+###urls para tabla policai######################3
+    url(
+        r'^policia/registrar$',
+        views.AgregarPoilicia.as_view(),
+        name='registrar_policia'
+    ),
+    url(
+        r'^policia/listar$',
+        views.ListPoiliciaView.as_view(),
+        name='listar_policia'
+    ),
+    url(
+        r'^policia/modificar/(?P<pk>\d+)$',
+        views.ModificarPolicia.as_view(),
+        name='modificar_policia'
+    ),
+    url(
+        r'^policia/eliminar/(?P<pk>\d+)$',
+        views.EliminarPolicia.as_view(),
+        name='eliminar_policia',
+     ),
     ]

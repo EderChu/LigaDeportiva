@@ -9,14 +9,39 @@ class Persona(models.Model):
         ('F', 'FEMENINO'),
     )
 
-    nombres = models.CharField('Nombre', max_length=50)
-    apellidos = models.CharField('Apellidos', max_length=50)
-    email = models.EmailField('Correo Electronico')
-    direccion = models.CharField('Direccion', max_length=50)
-    sexo = models.CharField('sexo', max_length=1, choices=GENDER_CHOICES)
-    telefono = models.CharField('Telefono', max_length=10)
-    fecha_nacimineto = models.DateField('Fecha de nacimiento', blank=True, null=True)
+    dni = models.CharField(
+        'Dni',
+        max_length=8
+    )
+    nombres = models.CharField(
+        'Nombre',
+        max_length=50
+    )
+    apellidos = models.CharField(
+        'Apellidos',
+        max_length=50
+    )
+    email = models.EmailField(
+        'Correo Electronico'
+    )
+    direccion = models.CharField(
+        'Direccion',
+        max_length=50
+    )
+    sexo = models.CharField(
+        'sexo',
+        max_length=1,
+        choices=GENDER_CHOICES
+    )
+    telefono = models.CharField(
+        'Telefono', max_length=10)
+    fecha_nacimineto = models.DateField(
+        'Fecha de nacimiento',
+        blank=True,
+        null=True
+    )
     foto = models.ImageField()
+
     class Meta:
         verbose_name = "Persona"
         verbose_name_plural = "Personas"

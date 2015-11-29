@@ -12,7 +12,7 @@ class Jugador(models.Model):
     equipo = models.ForeignKey(Equipo)
     posicion = models.CharField('Posicion', max_length=50)
     numero_camiseta = models.PositiveIntegerField('Numero de Camiseta')
-    estado = models.BooleanField()
+    estado = models.BooleanField('Habilitado')
 
     class Meta:
         verbose_name = "Jugador"
@@ -26,17 +26,25 @@ class Amonestacion(models.Model):
     TIPO_CHOICES = (
         ('A', 'Amarilla'),
         ('R', 'Roja'),
-        ('T', 'Tecnica'),   
-                    )
+        ('T', 'Tecnica'),
+    )
 
     CONDICION_CHOICES = (
         ('A', 'Activo'),
-        ('I', 'Inactivo'),  
-         )
+        ('I', 'Inactivo'),
+    )
 
     jugador = models.ForeignKey(Jugador)
-    tipo_amonestacion = models.CharField('Tipo de Amonestacion', max_length=1, choices=TIPO_CHOICES)
-    condicion = models.CharField('Condicion', max_length=1,choices=CONDICION_CHOICES)
+    tipo_amonestacion = models.CharField(
+        'Tipo de Amonestacion',
+        max_length=1,
+        choices=TIPO_CHOICES
+    )
+    condicion = models.CharField(
+        'Condicion',
+        max_length=1,
+        choices=CONDICION_CHOICES
+    )
     partido = models.ForeignKey(Partido)
     peso_amonestacion = models.PositiveIntegerField()
     descripcion = models.TextField()
@@ -54,11 +62,9 @@ class Goleadores(models.Model):
     partido = models.ForeignKey(Partido)
     num_goles = models.PositiveIntegerField()
 
-
     class Meta:
         verbose_name = "goles"
         verbose_name_plural = "goless"
 
     def __unicode__(self):
-        return jugador
-    
+        return self.jugador

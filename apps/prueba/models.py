@@ -45,6 +45,26 @@ class Medico(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+
+class Policia(models.Model):
+    POLICE_CHOICES = (
+        ('1', 'SOLDAO'),
+        ('2', 'CAPITAN'),
+        ('3', 'GENERAL'),
+    )
+    full_name = models.CharField('Nombres', max_length=50)
+    email = models.EmailField()
+    sueldo = models.DecimalField('Sueldo', max_digits=5, decimal_places=2)
+    rango = models.CharField('Rango', max_length=1, choices=POLICE_CHOICES)
+
+    class Meta:
+        verbose_name = "Policia"
+        verbose_name_plural = "Policias"
+
+    def __unicode__(self):
+        return self.full_name
+    
     
 
 

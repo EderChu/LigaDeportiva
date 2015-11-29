@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('equipo', '0002_auto_20151117_1703'),
+        ('equipo', '0002_auto_20151129_0505'),
         ('torneo', '0001_initial'),
         ('incidencias', '0001_initial'),
     ]
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('posicion', models.CharField(max_length=50, verbose_name=b'Posicion')),
                 ('numero_camiseta', models.PositiveIntegerField(verbose_name=b'Numero de Camiseta')),
-                ('estado', models.BooleanField()),
+                ('estado', models.BooleanField(verbose_name=b'Habilitado')),
                 ('equipo', models.ForeignKey(to='equipo.Equipo')),
                 ('persona', models.OneToOneField(to='torneo.Persona')),
             ],

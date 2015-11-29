@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 
 from django.utils import timezone
 
-from .models import Equipo, Jugador, Medico, Especialidad
+from .models import Equipo, Jugador, Medico, Especialidad, Policia
 
 from .forms import *
 
@@ -187,6 +187,43 @@ class EliminarMedico(DeleteView):
     #donde ira cuando se complete la accion
     success_url = reverse_lazy('prueba_app:listar_medico')
 
+#####################################mantenimiento  policia#####################3    
+class ListPoiliciaView(ListView):
+    context_object_name = 'policias'
+    #model = Libro
+    template_name = 'prueba/policia/listar.html'
+    paginate_by = 4
 
-        
+    def get_context_data(self, **kwargs):
+        context = super(ListPoiliciaView, self).get_context_data(**kwargs)
+        context['form'] = BuscarForm
+        return context
+
+    def get_queryset(self):
+        #recuperamos el valor por GET
+        queryset = Policia.objects.all()
+        q = self.request.GET.get("clave")
+        #utilizamos el procedimietno almacenado
+        if q:
+            queryset = Policia.objects.filter(full_name__icontains=q)
+        return queryset
+
+
+class AgregarPoilicia(CreateView):
+    form_class = PoliciaForm
+    template_name = 'prueba/policia/agregar.html'
+    success_url = reverse_lazy('prueba_app:listar_policia')
+
+
+class ModificarPolicia(UpdateView):
+    model = Policia
+    template_name = 'prueba/policia/modificar.html'
+    success_url = reverse_lazy('prueba_app:listar_policia')
+    form_class = PoliciaForm
+
+
+class EliminarPolicia(DeleteView):
+    template_name = 'prueba/policia/eliminar.html'
+    model = Policia
+    success_url = reverse_lazy('prueba_app:listar_policia')
         
