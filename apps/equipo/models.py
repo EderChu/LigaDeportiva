@@ -6,14 +6,18 @@ from apps.torneo.models import Persona, PrecioPago, Torneo
 
 
 class JuntaDirectiva(models.Model):
-    presidente = models.OneToOneField(Persona)
+    presidente = models.OneToOneField(User)
     secretario = models.OneToOneField(
         Persona,
-        related_name="Persona_secretario"
+        related_name="Persona_secretario",
+        blank=True,
+        null=True,
     )
     tesorero = models.OneToOneField(
         Persona,
-        related_name="Persona_tesorero"
+        related_name="Persona_tesorero",
+        blank=True,
+        null=True,
     )
 
     class Meta:
@@ -21,23 +25,33 @@ class JuntaDirectiva(models.Model):
         verbose_name_plural = "JuntaDirectivas"
 
     def __unicode__(self):
-        return self.presidente
+        return "%s" % str(self.presidente)
 
 
 class ComandoTecnico(models.Model):
     junta_directiva = models.OneToOneField(JuntaDirectiva)
-    tecnico = models.OneToOneField(Persona)
+    tecnico = models.OneToOneField(
+        Persona,
+        blank=True,
+        null=True,
+    )
     medico = models.OneToOneField(
         Persona,
-        related_name="Persona_medico"
+        related_name="Persona_medico",
+        blank=True,
+        null=True,
     )
     preparador = models.OneToOneField(
         Persona,
-        related_name="Persona_preparador"
+        related_name="Persona_preparador",
+        blank=True,
+        null=True,
     )
     delegado = models.OneToOneField(
         Persona,
-        related_name="Persona_delegado"
+        related_name="Persona_delegado",
+        blank=True,
+        null=True,
     )
 
     class Meta:
@@ -45,7 +59,7 @@ class ComandoTecnico(models.Model):
         verbose_name_plural = "ComandoTecnicos"
 
     def __unicode__(self):
-        return self.tecnico
+        return "%s" % str(self.tecnico)
 
 
 class Facultad(models.Model):
@@ -77,22 +91,30 @@ class Pago(models.Model):
         verbose_name_plural = "Pagos"
 
     def __unicode__(self):
-        return self.junta_directiva
+        return "%s" % str(self.junta_directiva)
 
 
 class Equipo(models.Model):
     nombre = models.CharField(
         'Nombre de Equipo',
-        max_length=50
+        max_length=50,
+        blank=True,
+        null=True,
     )
     color_camiseta = models.CharField(
         'Color de Camiseta',
-        max_length=50
+        max_length=50,
+        blank=True,
+        null=True,
     )
     junta_directiva = models.ForeignKey(JuntaDirectiva)
-    comando_tecnico = models.ForeignKey(ComandoTecnico)
+    comando_tecnico = models.ForeignKey(
+        ComandoTecnico,
+        blank=True,
+        null=True,
+    )
     facultad = models.ForeignKey(Facultad)
-    logo = models.IntegerField()
+    logo = models.IntegerField(blank=True, null=True)
     estado = models.BooleanField(
         'Habilitado',
         default=False,
@@ -103,4 +125,4 @@ class Equipo(models.Model):
         verbose_name_plural = "Equipos"
 
     def __unicode__(self):
-        return self.nombre
+        return "%s" % str(self.facultad)

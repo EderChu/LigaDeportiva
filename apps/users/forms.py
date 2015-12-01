@@ -2,6 +2,8 @@
 from django import forms
 from django.contrib.auth import authenticate
 
+from apps.equipo.models import Equipo, Facultad
+
 from .models import User
 
 
@@ -95,3 +97,53 @@ class RegistroUserForm(UserForm):
             )
         else:
             return password2
+
+
+class AdminEquipoForm(UserForm):
+    equipo = forms.ModelChoiceField(queryset=None, required=False)
+    facultad = forms.ModelChoiceField(queryset=None)
+    password1 = forms.CharField(
+        label='contraseña',
+        max_length=12,
+        widget=forms.PasswordInput(attrs={'class': 'validate'}),
+    )
+    password2 = forms.CharField(
+        label=' repetir contraseña',
+        max_length=12,
+        widget=forms.PasswordInput(attrs={'class': 'validate'}),
+    )
+
+    class Meta(UserForm.Meta):
+        fields = (
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'avatar',
+            'address',
+            'phone',
+            'gender',
+            'date_birth',
+            'password1',
+            'password2',
+        )
+
+    def clean_password2(self):
+        password1 = self.cleaned_data['password1']
+        password2 = self.cleaned_data['password2']
+
+        if password1 and password2 and password1 != password2:
+            self.add_error('password2', 'las contraseñas no coinciden..!!')
+        elif len(password2) < 5:
+            print 'menor a 5 caracteres'
+            self.add_error(
+                'password2',
+                'la contraseña debe tener por lo menos 5 caracteres!!'
+            )
+        else:
+            return password2
+
+    def __init__(self, *args, **kwargs):
+        super(AdminEquipoForm, self).__init__(*args, **kwargs)
+        self.fields['equipo'].queryset = Equipo.objects.all()
+        self.fields['facultad'].queryset = Facultad.objects.all()

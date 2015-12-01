@@ -22,4 +22,9 @@ urlpatterns = [
         views.AgregarAdministrador.as_view(),
         name='agregar-administrador'
     ),
+    url(
+        r'^add-admin-equipo/$',
+        views.AgregarAdmiEquipo.as_view(),
+        name='administrador-equipo'
+    ),
 ]

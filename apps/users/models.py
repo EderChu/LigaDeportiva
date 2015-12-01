@@ -61,7 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def get_full_name(self):
-        return "%s %s" % (self.last_name, self.first_name)
+        return "%s %s" % (self.username, self.first_name)
 
     def __unicode__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%s %s" % (self.username, self.last_name)

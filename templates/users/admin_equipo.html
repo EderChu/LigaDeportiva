@@ -2,7 +2,6 @@
 
 {% block contenido_panel %}
 {% load staticfiles %}
-            
             {% if form.errors %}
                 <div class="card-panel red lighten-1">
                     <span class="white-text"> {{ form.errors }} </span>
@@ -13,7 +12,7 @@
             <div class="row">
               <div class="card">
                 <div class="col s7">
-                <h5>Agregar Administrador de Sistema</h5>    
+                <h5>Generar Administrador de Equipo</h5>    
                 </div>
                 <div class="col s10 m6 ">
                     <form class="col s12" method="POST" enctype="multipart/form-data" id="form_datos">{% csrf_token %}
