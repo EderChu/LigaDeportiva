@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django import forms
-from models import Facultad
+from apps.equipo.models import Facultad, Equipo
+from apps.torneo.forms import PersonaForm
 
 
 class FacultadForm(forms.ModelForm):
@@ -22,3 +23,10 @@ class FacultadForm(forms.ModelForm):
         if num_palabras > 2:
             raise forms.ValidationError("Sigla no valida")
         return prop
+
+
+class EquipoForm(forms.ModelForm):
+    class Meta:
+        model = Equipo
+        fields = ('__all__')
+
