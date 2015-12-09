@@ -24,9 +24,9 @@ class Migration(migrations.Migration):
             name='Equipo',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('nombre', models.CharField(max_length=50, verbose_name=b'Nombre de Equipo')),
-                ('color_camiseta', models.CharField(max_length=50, verbose_name=b'Color de Camiseta')),
-                ('logo', models.IntegerField()),
+                ('nombre', models.CharField(max_length=50, null=True, verbose_name=b'Nombre de Equipo', blank=True)),
+                ('color_camiseta', models.CharField(max_length=50, null=True, verbose_name=b'Color de Camiseta', blank=True)),
+                ('logo', models.IntegerField(null=True, blank=True)),
                 ('estado', models.BooleanField(default=False, verbose_name=b'Habilitado')),
             ],
             options={

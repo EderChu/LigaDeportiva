@@ -27,4 +27,9 @@ urlpatterns = [
         views.EliminarFacultad.as_view(),
         name='eliminar-facultad',
     ),
+    url(
+        r'^equipo/modificar/$',
+        views.ActualizarEquipo.as_view(),
+        name='modificar-equipo',
+    ),
 ] 

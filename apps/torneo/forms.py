@@ -41,8 +41,7 @@ class TorneoForm(forms.ModelForm):
         }
 
 
-class ArbitroForm(forms.ModelForm):
-
-    class Meta:
-        model = Arbitro
+class ArbitroForm(PersonaForm):
+    experiencia = forms.IntegerField(label='Experiencia')
+    class Meta(PersonaForm):
         fields = ("__all__")
