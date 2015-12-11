@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django import forms
-from apps.equipo.models import Facultad, Equipo
+from apps.equipo.models import Facultad, Equipo, ComandoTecnico
 from apps.torneo.forms import PersonaForm
 
 
@@ -28,5 +28,10 @@ class FacultadForm(forms.ModelForm):
 class EquipoForm(forms.ModelForm):
     class Meta:
         model = Equipo
+        fields = ('__all__')
+
+class ComandoTecnicoForm(forms.ModelForm):
+    class Meta:
+        model = ComandoTecnico
         fields = ('__all__')
 

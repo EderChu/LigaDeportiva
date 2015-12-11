@@ -32,4 +32,9 @@ urlpatterns = [
         views.ActualizarEquipo.as_view(),
         name='modificar-equipo',
     ),
+    url(
+        r'^comando/modificar/$',
+        views.ActualizarComandoTecnico.as_view(),
+        name='modificar-comando',
+    ),
 ] 

@@ -4,8 +4,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from django.views.generic.edit import FormView, FormMixin
 from django.core.urlresolvers import reverse_lazy, reverse
 
-from .forms import FacultadForm, EquipoForm
-from apps.equipo.models import Facultad, Equipo
+from .forms import FacultadForm, EquipoForm,ComandoTecnicoForm
+from apps.equipo.models import Facultad, Equipo,ComandoTecnico
 
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -88,3 +88,38 @@ class ActualizarEquipo(FormView):
             # guaranos el equipo con los nuevos datos
             equipo.save()
         return super(ActualizarEquipo, self).form_valid(form)
+
+class ActualizarComandoTecnico(FormView):
+    template_name = 'equipo/comando_tecnico/modificar.html'
+    form_class = ComandoTecnicoForm
+    success_url = '.'
+
+    def get_initial(self):
+        # recuperamos el objeto comando_tecnico
+        initial = super(ActualizarComandoTecnico, self).get_initial()
+        usuario = self.request.user
+        # recuperamos las observaciones
+        comando_query = ComandoTecnico.objects.filter(junta_directiva__presidente=usuario)
+        if comando_query.count() > 0:
+            comando_tecnico = comando_query[0]
+            initial['junta_directiva'] = comando_tecnico.junta_directiva
+            initial['tecnico'] = comando_tecnico.tecnico
+            initial['medico'] = comando_tecnico.medico
+            initial['preparador'] = comando_tecnico.preparador
+            initial['delegado'] = comando_tecnico.delegado
+        return initial
+
+    def form_valid(self, form):
+        usuario = self.request.user
+        # recuperamos las observaciones
+        comando_query = Equipo.objects.filter(junta_directiva__presidente=usuario)
+        if comando_query.count() > 0:
+            comando_tecnico = comando_query[0]
+            comando_tecnico.junta_directiva = form.cleaned_data['junta_directiva']
+            comando_tecnico.tecnico = form.cleaned_data['tecnico']
+            comando_tecnico.medico = form.cleaned_data['medico']
+            comando_tecnico.preparador = form.cleaned_data['preparador']
+            comando_tecnico.delegado = form.cleaned_data['delegado']
+            # guaranos el comando_tecnico con los nuevos datos
+            comando_tecnico.save()
+        return super(ActualizarComandoTecnico, self).form_valid(form)

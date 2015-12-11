@@ -2,14 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('equipo', '0003_auto_20151202_1453'),
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('equipo', '0002_auto_20151210_1550'),
         ('torneo', '0001_initial'),
     ]
 
@@ -21,7 +19,6 @@ class Migration(migrations.Migration):
                 ('tipo', models.CharField(max_length=50, verbose_name=b'Tipo Insidencia')),
                 ('minuto', models.CharField(max_length=10, verbose_name=b'minuto de la Insidencia')),
                 ('descripcion', models.TextField()),
-                ('usuario', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
