@@ -4,8 +4,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, DeleteVie
 from django.views.generic.edit import FormView, FormMixin
 from django.core.urlresolvers import reverse_lazy, reverse
 
-from .forms import FacultadForm, EquipoForm,ComandoTecnicoForm
-from apps.equipo.models import Facultad, Equipo,ComandoTecnico
+from .forms import FacultadForm, EquipoForm,ComandoTecnicoForm ,JuntaDirectivaForm
+from apps.equipo.models import Facultad, Equipo,ComandoTecnico, JuntaDirectiva
 
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -88,6 +88,7 @@ class ActualizarEquipo(FormView):
             # guaranos el equipo con los nuevos datos
             equipo.save()
         return super(ActualizarEquipo, self).form_valid(form)
+        
 
 class ActualizarComandoTecnico(FormView):
     template_name = 'equipo/comando_tecnico/modificar.html'
@@ -123,3 +124,34 @@ class ActualizarComandoTecnico(FormView):
             # guaranos el comando_tecnico con los nuevos datos
             comando_tecnico.save()
         return super(ActualizarComandoTecnico, self).form_valid(form)
+
+class ActualizarJuntaDirectiva(FormView):
+    template_name = 'equipo/juntadirectiva/modificar.html'
+    form_class = JuntaDirectivaForm
+    success_url = '.'
+
+    def get_initial(self):
+        # recuperamos el objeto equipo
+        initial = super(ActualizarJuntaDirectiva, self).get_initial()
+        usuario = self.request.user
+        # recuperamos las observaciones
+        junta_query = JuntaDirectiva.objects.filter(presidente=usuario)
+        if junta_query.count() > 0:
+            junta = junta_query[0]
+            initial['presidente'] = junta.presidente
+            initial['secretario'] = junta.secretario
+            initial['tesorero'] = junta.tesorero
+        return initial
+
+    def form_valid(self, form):
+        usuario = self.request.user
+        # recuperamos las observaciones
+        junta_query = JuntaDirectiva.objects.filter(presidente=usuario)
+        if junta_query.count() > 0:
+            junta = junta_query[0]
+            junta.presidente = form.cleaned_data['presidente']
+            junta.secretario = form.cleaned_data['secretario']
+            junta.tesorero = form.cleaned_data['tesorero']
+            # guaranos el junta con los nuevos datos
+            junta.save()
+        return super(ActualizarJuntaDirectiva, self).form_valid(form)

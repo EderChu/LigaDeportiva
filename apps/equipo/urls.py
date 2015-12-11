@@ -37,4 +37,9 @@ urlpatterns = [
         views.ActualizarComandoTecnico.as_view(),
         name='modificar-comando',
     ),
+    url(
+        r'^juntadirectiva/modificar/$',
+        views.ActualizarJuntaDirectiva.as_view(),
+        name='modificar-junta',
+    ),
 ] 
